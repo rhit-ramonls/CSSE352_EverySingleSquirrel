@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class EventBus : MonoBehaviour
 {
-    public enum EventType { StartGame };
+    public enum EventType { StartGame, Credits };
 
     private static IDictionary<EventType, UnityEvent> _events = new Dictionary<EventType, UnityEvent>();
 

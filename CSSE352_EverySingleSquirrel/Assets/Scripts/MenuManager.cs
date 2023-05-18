@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 
@@ -16,6 +17,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField] AudioClip clickSound;
     [SerializeField] AudioClip menuMusic;
 
+    public Animator animator;
+    bool open;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +27,7 @@ public class MenuManager : MonoBehaviour
         _mute = false;
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = menuMusic;
+        open = false;
         SetupListeners();
     }
 
@@ -35,6 +40,7 @@ public class MenuManager : MonoBehaviour
     void SetupListeners()
     {
         EventBus.Subscribe(EventBus.EventType.StartGame, LoadStartGame);
+        EventBus.Subscribe(EventBus.EventType.Credits, LoadCredits);
     }
 
     void LoadStartGame()
@@ -47,9 +53,18 @@ public class MenuManager : MonoBehaviour
         CleanupListeners();
     }
 
+    void LoadCredits()
+    {
+        _audioSource.PlayOneShot(clickSound);
+        Debug.Log("Toggling Credits...");
+        open = !open;
+        animator.SetBool("IsOpen", open);
+    }
+
     void CleanupListeners()
     {
         EventBus.Unsubscribe(EventBus.EventType.StartGame, LoadStartGame);
+        EventBus.Unsubscribe(EventBus.EventType.Credits, LoadCredits);
     }
 
 }
