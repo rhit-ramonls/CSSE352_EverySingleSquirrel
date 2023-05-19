@@ -23,6 +23,12 @@ public class PlayerMove : MonoBehaviour
     {
         float deltaX = Input.GetAxis("Horizontal") * speed;
         Vector2 movement;
+
+        if (!Mathf.Approximately(deltaX, 0))
+        {
+            transform.localScale = new Vector3( -Mathf.Sign(deltaX), 1, 1);
+        }
+
         if (allowVerticalMovement)
         {
             float deltaY = Input.GetAxis("Vertical") * speed;

@@ -53,7 +53,7 @@ public class MenuManager : MonoBehaviour
         CleanupListeners();
     }
 
-    void LoadCredits()
+    public void LoadCredits()
     {
         _audioSource.PlayOneShot(clickSound);
         Debug.Log("Toggling Credits...");
