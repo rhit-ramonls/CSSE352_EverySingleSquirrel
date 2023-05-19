@@ -21,6 +21,7 @@ public class ItemSpawner : MonoBehaviour
 
     void SpawnItems()
     {
+        Debug.Log("Spawing items!");
         for(int i=0; i<5; i++){
             GameObject new_item = Instantiate(itemPrefab);
             new_item.transform.position = new Vector3(Random.Range(-18.5f,16.5f), Random.Range(-4.5f,12.5f), new_item.transform.position.z);

@@ -57,14 +57,14 @@ public class DialogueManager : MonoBehaviour
         {
             
             for(int i=0; i<names.Length; i++){
-                Debug.Log(names[i] + " Compared to " + nameText.text);
+                // Debug.Log(names[i] + " Compared to " + nameText.text);
                 if(string.Equals(names[i], nameText.text) && introEnd[i] == true){
                     if (FindObjectOfType<GameManager>().numAcorns >= 5)
                     {
                     FindObjectOfType<GameManager>().numAcorns = FindObjectOfType<GameManager>().numAcorns - 5;
                     GoodResponse();
                     } else {
-                    Debug.Log("Match!");
+                    // Debug.Log("Match!");
                     EventBus.Publish(EventBus.EventType.SpawnItems);
                     }
                     EndDialogue();
